@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build -- --watch",
+    "start": "webpack && node server.bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config ./webpack.config.js"
   },
@@ -12,12 +12,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",
-    "webpack": "^3.3.0"
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.6.1",
+    "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
-    "lodash": "^4.17.4"
+    "express": "^4.15.3",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   }
 }
