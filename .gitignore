@@ -2,3 +2,4 @@
 ./dist/app.bundle.js
 server.bundle.js
 *.DS_Store*
+.env
