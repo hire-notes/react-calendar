@@ -1,4 +1,4 @@
-const eventsPath = 'http://localhost:8080';
+const eventsPath = '/api';
 
 export const getEvents = (lat,lng,time, source) => {
 	return fetch(`${ eventsPath }/${ source }

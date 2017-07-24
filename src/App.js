@@ -4,7 +4,6 @@ import {Event} from './components/events/event';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import './App.css';
 import {getEvents} from './services/eventsService';
-import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 
 
 class App extends Component {
