@@ -1,0 +1,45 @@
+body {
+	position: relative;
+	display: block;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  //background-image: url('assets/Pattern.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: #fff;
+  z-index: -10;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: 'Open Sans', 'sans serif';
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+}
+
+p {
+	margin-top: 0.1rem;
+	margin-bottom: 0.1rem;
+}
+
+a {
+	text-decoration: none;
+	color: rgba(81,187,219,1);
+}
+
+a:hover {
+	color: rgba(50,120,187,1);
+}

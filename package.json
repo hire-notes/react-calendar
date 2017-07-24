@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack && node server.bundle.js",
+    "start": "npm install && webpack && node server.bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config ./webpack.config.js"
   },
@@ -24,6 +24,9 @@
   "dependencies": {
     "express": "^4.15.3",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-places-autocomplete": "^5.3.1",
+    "moment": "^2.18.1",
+    "normalize.css": "^7.0.0"
   }
 }
