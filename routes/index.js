@@ -1,9 +1,10 @@
 import express from 'express';
-
 let router = express.Router();
 
-router.get('/', (req, res) => {
-	res.status(200).send(JSON.stringify({hello: 'world'}));
-});
+import facebook from './facebook';
+import ticketmaster from './ticketmaster';
+
+router.use('/facebook', facebook);
+router.use('/ticketmaster', ticketmaster);
 
 export default router;

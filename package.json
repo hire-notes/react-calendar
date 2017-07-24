@@ -27,6 +27,12 @@
     "react-dom": "^15.6.1",
     "react-places-autocomplete": "^5.3.1",
     "moment": "^2.18.1",
-    "normalize.css": "^7.0.0"
+    "normalize.css": "^7.0.0",
+    "facebook-events-by-location-core": "^0.3.0",
+    "cors": "^2.8.3",
+    "dotenv": "^4.0.0",
+    "latlon-geohash": "^1.1.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
   }
 }
