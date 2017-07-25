@@ -1,9 +1,9 @@
 import React from 'react';
-import {DateInput} from './date';
-import {LocationInput} from './location';
+import {DateInput} from './DateInput';
+import {LocationInput} from './LocationInput';
 
 export const Search = (props) => {
-	return ( 
+	return (
 	<div>
 	<div className='location-area'>
 	    <LocationInput
