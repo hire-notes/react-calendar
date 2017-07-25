@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {Search} from './components/search';
-import {Event} from './components/events/event';
+import {Search} from './search/Search';
+import {Event} from './events/Event';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import './App.css';
-import {getEvents} from './services/eventsService';
+import '../App.css';
+import {getEvents} from '../services/eventsService';
 
 
 class App extends Component {
@@ -120,7 +120,7 @@ class App extends Component {
             handleLocationSelect={this.handleLocationSelect}
             handleDateInput={this.handleDateInput}
           />
-        
+
         {
           this.state.foundEvents.facebook.length ? (
             <div className='event-area'>
@@ -129,7 +129,7 @@ class App extends Component {
                   <Event
                     url={`https://www.facebook.com/events/${evt.id}`}
                     source='facebook'
-                    {...evt} 
+                    {...evt}
                   />
                 ))}
               </div>
