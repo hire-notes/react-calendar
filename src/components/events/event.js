@@ -2,14 +2,10 @@ import React from 'react';
 import Moment from 'moment';
 
 export const Event = (props) => {
-	let url;
 
-	// use proper url for facebook and ticketmaster event links
-	if (props.source === 'ticketmaster') {
-		url = props.url
-	} else {
-		url = `https://www.facebook.com/events/${props.id}`
-	}
+	// Ticketmaster events have a url property, but Facebook events don't, so
+	// we want to hardcode the Facebook event url if props.url === undefined
+	const url = props.url || `https://www.facebook.com/events/${props.id}`;
 
 	return (
 		<div className='card_cont'>
