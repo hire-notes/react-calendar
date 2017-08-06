@@ -6,26 +6,14 @@ export const EventList = (props) => {
     return ''
   }
 
-  // generates different array of events depending on the source
   let events = props.events[props.src].map((event) => {
-    if (props.activeSource === 'facebook') {
-      return (
-        <Event
-          key={event.id}
-          url={`https://www.facebook.com/events/${event.id}`}
-          source={props.src}
-          {...event}
-        />
-      )
-    } else {
-      return (
-        <Event
-          key={event.id}
-          source={props.src}
-          {...event}
-        />
-      )
-    }
+    return (
+      <Event
+        key={event.id}
+        source={props.src}
+        {...event}
+      />
+    )
   });
 
   return (

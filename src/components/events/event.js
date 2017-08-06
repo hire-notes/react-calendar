@@ -4,6 +4,7 @@ import Moment from 'moment';
 export const Event = (props) => {
 	let url;
 
+	// use proper url for facebook and ticketmaster event links
 	if (props.source === 'ticketmaster') {
 		url = props.url
 	} else {
