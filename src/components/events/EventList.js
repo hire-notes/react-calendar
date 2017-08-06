@@ -5,7 +5,7 @@ export const EventList = (props) => {
   if (!props.events) {
     return ''
   }
-  debugger;
+
   let events = props.events[props.src].map((event) => {
     if (props.activeSource === 'facebook') {
       return (

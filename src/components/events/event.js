@@ -4,7 +4,7 @@ import Moment from 'moment';
 export const Event = (props) => {
 	let url;
 
-	if (props.src === 'ticketmaster') {
+	if (props.source === 'ticketmaster') {
 		url = props.url
 	} else {
 		url = `https://www.facebook.com/events/${props.id}`
