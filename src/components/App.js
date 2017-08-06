@@ -110,7 +110,7 @@ class App extends Component {
             handleLocationSelect={this.handleLocationSelect}
             handleDateInput={this.handleDateInput}
           />
-          <EventList events={this.state.foundEvents.facebook} src={this.state.activeSource} />
+          <EventList events={this.state.foundEvents} src={this.state.activeSource} />
         </div>
       </div>
     )
