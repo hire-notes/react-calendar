@@ -2,6 +2,14 @@ import React from 'react';
 import Moment from 'moment';
 
 export const Event = (props) => {
+	let url;
+
+	if (props.src === 'ticketmaster') {
+		url = props.url
+	} else {
+		url = `https://www.facebook.com/events/${props.id}`
+	}
+
 	return (
 		<div className='card_cont'>
 			<div className='card_img' style={{backgroundImage: 'url('+props.coverPicture+')'}}>
@@ -10,8 +18,9 @@ export const Event = (props) => {
 				<div className='card_text-inner'>
 				<p>
 					{Moment(props.startTime).format('MMMM Do YYYY')}
-					<a href={props.url}
-						target='_blank'> via {props.source.toUpperCase()}</a>
+					<a href={url}
+						target='_blank'> via {props.source.toUpperCase()}
+					</a>
 				</p>
 				<p>
 					{props.venue.name}

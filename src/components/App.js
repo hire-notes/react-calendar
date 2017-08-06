@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Search} from './search/Search';
-import {Event} from './events/Event';
+import {EventList} from './events/EventList';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import '../App.css';
 import {getEvents} from '../services/eventsService';
@@ -121,39 +121,10 @@ class App extends Component {
             handleDateInput={this.handleDateInput}
           />
 
-        {
-          this.state.foundEvents.facebook.length ? (
-            <div className='event-area'>
-              <div>
-                {this.state.foundEvents.facebook.map((evt) => (
-                  <Event
-                    url={`https://www.facebook.com/events/${evt.id}`}
-                    source='facebook'
-                    {...evt}
-                  />
-                ))}
-              </div>
-            </div>
-          ) : ''
-        }
-
-        {
-          this.state.foundEvents.ticketmaster.length ? (
-            <div className='event-area'>
-              <div>
-                {this.state.foundEvents.ticketmaster.map((evt) => (
-                  <Event
-                    source='ticketmaster'
-                    {...evt}
-                  />
-                ))}
-              </div>
-            </div>
-          ) : ''
-        }
+          <EventList events={this.state.foundEvents.facebook} src={'facebook'} />
+        </div>
       </div>
-      </div>
-    );
+    )
   }
 }
 
