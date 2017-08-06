@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import{Header} from './header/Header';
 import {Search} from './search/Search';
 import {EventList} from './events/EventList';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
@@ -100,18 +101,7 @@ class App extends Component {
     return (
       <div className="main">
         <div className='search-area'>
-          <h1 style={{fontSize: '3rem', marginBottom: '0.33rem'}}>
-            Search {this.state.activeSource.toUpperCase()} event data
-          </h1>
-          <p style={{fontSize: '1.5rem', marginBottom: '1rem'}}>
-            View attendance for other events that week
-          </p>
-          {this.state.activeSource=='facebook' && <p style={{fontSize: '1rem', marginBottom: '1rem'}}>
-            Want to view pricing information? <a onClick={() => this.setSource('ticketmaster')}>Search Ticketmaster</a>
-          </p>}
-          {this.state.activeSource=='ticketmaster' && <p style={{fontSize: '1rem', marginBottom: '1rem'}}>
-            Want to view attendance information? <a onClick={() => this.setSource('facebook')}>Search Facebook</a>
-          </p>}
+          <Header activeSource={this.state.activeSource} setSource={this.setSource} />
           <Search
             name={this.state.place.name}
             date={this.state.date}
@@ -120,8 +110,7 @@ class App extends Component {
             handleLocationSelect={this.handleLocationSelect}
             handleDateInput={this.handleDateInput}
           />
-
-          <EventList events={this.state.foundEvents.facebook} src={'facebook'} />
+          <EventList events={this.state.foundEvents.facebook} src={this.state.activeSource} />
         </div>
       </div>
     )
