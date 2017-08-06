@@ -40055,6 +40055,7 @@ var EventList = exports.EventList = function EventList(props) {
     return '';
   }
 
+  // generates different array of events depending on the source
   var events = props.events[props.src].map(function (event) {
     if (props.activeSource === 'facebook') {
       return _react2.default.createElement(_Event.Event, _extends({

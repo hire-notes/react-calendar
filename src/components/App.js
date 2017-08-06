@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import{Header} from './header/Header';
 import {Search} from './search/Search';
 import {EventList} from './events/EventList';
-import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
 import '../App.css';
 import {getEvents} from '../services/eventsService';
 
@@ -39,7 +39,7 @@ class App extends Component {
         ticketmaster: []
       }
     }, () => {
-    getEvents(this.state.place.lat,this.state.place.lng,this.state.date, this.state.activeSource)
+    getEvents(this.state.place.lat, this.state.place.lng, this.state.date, this.state.activeSource)
       .then(evts => {
         this.loadEvents(evts);
       })
@@ -48,9 +48,11 @@ class App extends Component {
 
   setSource = (source) => {
     let reqUpdate = false;
+
     if (this.state.foundEvents[this.state.activeSource].length) {
       reqUpdate = true;
     }
+    
     this.setState({
       activeSource: source
     }, () => {
@@ -73,7 +75,7 @@ class App extends Component {
   handleLocationSelect = (address, placeId) => {
     const newPlace = this.state.place;
     newPlace.name = address;
-    newPlace.placeId=placeId;
+    newPlace.placeId = placeId;
 
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
