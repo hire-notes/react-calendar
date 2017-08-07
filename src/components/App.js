@@ -23,6 +23,7 @@ class App extends Component {
     }
   }
 
+  // store a provided array of events in the component's state
   loadEvents = (events, source) => {
     const foundEvents = this.state.foundEvents;
     foundEvents[source || this.state.activeSource] = events;
@@ -32,6 +33,7 @@ class App extends Component {
     });
   }
 
+  // reset foundEvents state and fetch new events based on location, date, and the event source
   runEventService = () => {
     this.setState({
       foundEvents: {
@@ -46,13 +48,14 @@ class App extends Component {
     });
   }
 
+  // update the activeSource state and fetch new events if necessary
   setSource = (source) => {
     let reqUpdate = false;
 
     if (this.state.foundEvents[this.state.activeSource].length) {
       reqUpdate = true;
     }
-    
+
     this.setState({
       activeSource: source
     }, () => {
@@ -62,6 +65,7 @@ class App extends Component {
     });
   }
 
+  // store a provided address in the component's state
   handleLocationInput = (address) => {
     //evt.preventDefault();
     const newPlace = this.state.place;
@@ -72,6 +76,7 @@ class App extends Component {
     });
   }
 
+  // geocode and store a provided address and fetch new events
   handleLocationSelect = (address, placeId) => {
     const newPlace = this.state.place;
     newPlace.name = address;
@@ -90,6 +95,7 @@ class App extends Component {
       .catch(e => console.log('error',e))
   }
 
+  // generate and store a date object from form input, then fetch new events
   handleDateInput = (evt) => {
     evt.preventDefault();
     const newDate = new Date(evt.target.value);
