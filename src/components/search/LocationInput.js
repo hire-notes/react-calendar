@@ -18,5 +18,4 @@ export const LocationInput = (props) => {
 	};
 
 	return <PlacesAutocomplete styles={myStyles} inputProps={inputProps} onSelect={props.handleLocationSelect} />
-
 }

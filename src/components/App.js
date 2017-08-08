@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import{Header} from './header/Header';
 import {Search} from './search/Search';
-import {Event} from './events/Event';
-import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import {EventList} from './events/EventList';
+import {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
 import '../App.css';
 import {getEvents} from '../services/eventsService';
 
@@ -22,6 +23,7 @@ class App extends Component {
     }
   }
 
+  // store a provided array of events in the component's state
   loadEvents = (events, source) => {
     const foundEvents = this.state.foundEvents;
     foundEvents[source || this.state.activeSource] = events;
@@ -31,6 +33,7 @@ class App extends Component {
     });
   }
 
+  // reset foundEvents state and fetch new events based on location, date, and the event source
   runEventService = () => {
     this.setState({
       foundEvents: {
@@ -38,18 +41,21 @@ class App extends Component {
         ticketmaster: []
       }
     }, () => {
-    getEvents(this.state.place.lat,this.state.place.lng,this.state.date, this.state.activeSource)
+    getEvents(this.state.place.lat, this.state.place.lng, this.state.date, this.state.activeSource)
       .then(evts => {
         this.loadEvents(evts);
       })
     });
   }
 
+  // update the activeSource state and fetch new events if necessary
   setSource = (source) => {
     let reqUpdate = false;
+
     if (this.state.foundEvents[this.state.activeSource].length) {
       reqUpdate = true;
     }
+
     this.setState({
       activeSource: source
     }, () => {
@@ -59,6 +65,7 @@ class App extends Component {
     });
   }
 
+  // store a provided address in the component's state
   handleLocationInput = (address) => {
     //evt.preventDefault();
     const newPlace = this.state.place;
@@ -69,10 +76,11 @@ class App extends Component {
     });
   }
 
+  // geocode and store a provided address and fetch new events
   handleLocationSelect = (address, placeId) => {
     const newPlace = this.state.place;
     newPlace.name = address;
-    newPlace.placeId=placeId;
+    newPlace.placeId = placeId;
 
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
@@ -87,6 +95,7 @@ class App extends Component {
       .catch(e => console.log('error',e))
   }
 
+  // generate and store a date object from form input, then fetch new events
   handleDateInput = (evt) => {
     evt.preventDefault();
     const newDate = new Date(evt.target.value);
@@ -100,18 +109,7 @@ class App extends Component {
     return (
       <div className="main">
         <div className='search-area'>
-          <h1 style={{fontSize: '3rem', marginBottom: '0.33rem'}}>
-            Search {this.state.activeSource.toUpperCase()} event data
-          </h1>
-          <p style={{fontSize: '1.5rem', marginBottom: '1rem'}}>
-            View attendance for other events that week
-          </p>
-          {this.state.activeSource=='facebook' && <p style={{fontSize: '1rem', marginBottom: '1rem'}}>
-            Want to view pricing information? <a onClick={() => this.setSource('ticketmaster')}>Search Ticketmaster</a>
-          </p>}
-          {this.state.activeSource=='ticketmaster' && <p style={{fontSize: '1rem', marginBottom: '1rem'}}>
-            Want to view attendance information? <a onClick={() => this.setSource('facebook')}>Search Facebook</a>
-          </p>}
+          <Header activeSource={this.state.activeSource} setSource={this.setSource} />
           <Search
             name={this.state.place.name}
             date={this.state.date}
@@ -120,40 +118,10 @@ class App extends Component {
             handleLocationSelect={this.handleLocationSelect}
             handleDateInput={this.handleDateInput}
           />
-
-        {
-          this.state.foundEvents.facebook.length ? (
-            <div className='event-area'>
-              <div>
-                {this.state.foundEvents.facebook.map((evt) => (
-                  <Event
-                    url={`https://www.facebook.com/events/${evt.id}`}
-                    source='facebook'
-                    {...evt}
-                  />
-                ))}
-              </div>
-            </div>
-          ) : ''
-        }
-
-        {
-          this.state.foundEvents.ticketmaster.length ? (
-            <div className='event-area'>
-              <div>
-                {this.state.foundEvents.ticketmaster.map((evt) => (
-                  <Event
-                    source='ticketmaster'
-                    {...evt}
-                  />
-                ))}
-              </div>
-            </div>
-          ) : ''
-        }
+          <EventList events={this.state.foundEvents} src={this.state.activeSource} />
+        </div>
       </div>
-      </div>
-    );
+    )
   }
 }
 
